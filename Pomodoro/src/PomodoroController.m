@@ -371,6 +371,12 @@
     NSString* name = [NSString stringWithFormat:NSLocalizedString(@"Last: %@ (interrupted)",@"Tooltip for interrupt-reset pomodoros"), _pomodoroName];
 	[statusItem setToolTip:name];
 
+    Pomodoro* pomo = [notification object];
+	[stats.pomos newPomodoro:lround(pomo.realDuration/60.0) withExternalInterruptions:pomo.externallyInterrupted withInternalInterruptions: pomo.internallyInterrupted];
+	
+    // Save stats here in case application is forcefully terminated
+    [stats saveState];
+
 	[self updateMenu];
 	[self showTimeOnStatusBar: _initialTime * 60];
 }
