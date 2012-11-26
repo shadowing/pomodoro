@@ -1,8 +1,8 @@
 tell application "System Events" to if exists process "Things" then
 	tell application "Things"
 		repeat with selectedToDo in to dos of list "Today"
-			-- if name of selectedToDo = "$pomodoroName" then
-			if name of selectedToDo = "test" then
+			if name of selectedToDo = "$pomodoroName" then
+			-- if name of selectedToDo = "test" then
 				set notes of selectedToDo to "completed on " & (time string of (current date))
 				set tagNew to {}
 				set fst to "False"
@@ -18,9 +18,9 @@ tell application "System Events" to if exists process "Things" then
 					end if
 				end repeat
 				if fst is "False" then
-				set tag names of selectedToDo to tag names of selectedToDo & ",p:1"
+					set tag names of selectedToDo to tag names of selectedToDo & ",p:1"
 				else
-				set tag names of selectedToDo to my joinList(tagNew, ", ")
+					set tag names of selectedToDo to my joinList(tagNew, ", ")
 				end if
 				--				set status of selectedToDo to completed
 				exit repeat
